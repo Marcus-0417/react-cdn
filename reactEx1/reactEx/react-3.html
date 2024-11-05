@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>環境安裝</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="images/favicon.ico" rel="shortcut icon">
+    <meta charset="UTF-8">
+    <script src="../javascripts/vendor.js"></script>
+    <style>
+        h1 {
+            color: blue;
+
+        }
+    </style>
+</head>
+
+<body class="bg-lighter">
+    <div class="container main my-5">
+        <div class="row">
+            <main class="col post">
+                <!-- 章節標題 -->
+                <div class="mb-4">
+                    <h1 class="mt-0 text-muted">建立版型</h1><small>檔名：<code>react-2.html</code></small>
+                </div>
+                <!-- 練習開始 -->
+
+                <!-- 步驟一：載入React, Bable -->
+                <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+                <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+                <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+                <!-- 步驟二：載入root元素 -->
+                <div id="root"></div>
+
+                <!-- 使用JSX，type類型為 "text/babel" -->
+                <script type="text/babel">
+                    // 步驟三：檢查資源是否載入
+                    // console.log(React, ReactDOM);
+
+                    // 步驟四：建立 React 元件
+                    /* 建立函示方式一樣，但是每個單字都要"大寫"(大駝峰) */
+                    function App() {
+                        /* 抽離資料出來 */
+                        const dataObj = {
+                            /* imgUrl: "./images/pic1.jpg", */
+                            Title: "我是無尾喵",
+                            content: "跨沙小我要全部.",
+                            btnName: "按我",
+                            btnLink: "https://www.google.com.tw/?hl=zh_TW"
+                        }
+
+                        /* 只能渲染一個元素 */
+                        return (
+                            <div>
+                                {/* JSX中若要使用JS語法，前後加{} */}
+                                <h1>今天日期:<span style={{ color: "green" }}>{new Date().toLocaleDateString()}</span></h1>
+                                <div className="card" style={{ width: "18rem" }}>
+                                    {/* <img src={dataObj.imgUrl} className="card-img-top" alt="..." /> */}
+                                    <div className="card-img-top" style={{
+                                        height: "350px", /* 因為div的高度是隨著內容縮放，所以如果沒有內容就要設定高度 */
+                                        backgroundImage: `url("./images/pic1.jpg")`,
+                                        backgroundSize: "cover",
+                                        backgroundPosition: "center",
+                                    }}></div>
+                                    <div className="card-body">
+                                        {/* JSX中的CSS如果超過2個單字以上
+                                            1. 中間的減號"-"要刪除
+                                            2. 第二個單字開始的自首要大寫 */}
+                                        <h5 className="card-title" style={{
+                                            fontSize: "30px",
+                                            backgroundColor: "yellow",
+                                        }}>{dataObj.Title}</h5>
+                                        <p className="card-text">{dataObj.content}</p>
+                                        <a href={dataObj.btnLink} className="btn btn-primary">{dataObj.btnName}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
+
+                    // 步驟五：渲染元件到根元件上
+                    const root = ReactDOM.createRoot(document.getElementById('root'));
+                    root.render(<App />);
+
+                </script>
+
+                <!-- 練習結束 -->
+            </main>
+        </div>
+    </div>
+    <link rel="stylesheet" href="../stylesheets/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</body>
+
+</html>
